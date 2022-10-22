@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View, ScrollView, FlatList } from "react-native";
-import SettingButton from "./src/components/SettingButton.jsx";
+import { GenericButton, GenericTextInput } from "./src/components/Inputs.jsx";
 import SettingsButton from "./src/components/SettingsButton.jsx";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -64,9 +64,9 @@ const HomeScreen = ({ navigation }) => {
 				<Action />
 			</ScrollView>
 			<Text>Seth loves men</Text>
-			<DequeueButton>
+			<GenericButton>
 				<Text> Confirm that seth loves men </Text>
-			</DequeueButton>
+			</GenericButton>
 			<SettingsButton navigation={navigation} />
 		</View>
 	);
@@ -74,9 +74,19 @@ const HomeScreen = ({ navigation }) => {
 
 const SettingsScreen = ({ navigation }) => {
 	return (
-		<View style={styles.container}>
-			<Text>Settings</Text>
-			<StatusBar style="auto" />
+		<View
+			style={{
+				width: "100%",
+				height: "100%",
+				backgroundColor: "#000",
+			}}>
+			<ScrollView
+				contentContainerStyle={{
+					width: "100%",
+					height: "100%",
+				}}>
+				<GenericTextInput title="Computer Key" />
+			</ScrollView>
 		</View>
 	);
 };
@@ -87,6 +97,7 @@ const styles = StyleSheet.create({
 		backgroundColor: "#000",
 		alignItems: "center",
 		justifyContent: "center",
+		width: "100%",
 	},
 	body: {
 		backgroundColor: "#000",

@@ -1,9 +1,16 @@
 import React from "react";
-import { Text, Pressable, Linking, StyleSheet } from "react-native";
+import {
+	Text,
+	Pressable,
+	Linking,
+	StyleSheet,
+	TextInput,
+	View,
+} from "react-native";
 // Import alert
 import { Alert } from "react-native";
 
-class SettingButton extends React.Component {
+class GenericButton extends React.Component {
 	constructor(props) {
 		super(props);
 		this.onPressLocal = this.onPressLocal.bind(this);
@@ -58,6 +65,50 @@ class SettingButton extends React.Component {
 	}
 }
 
+class GenericTextInput extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			styles: StyleSheet.create({
+				textInput: {
+					backgroundColor: "#FFFFFF",
+					borderRadius: 10,
+					padding: 10,
+					margin: 10,
+					fontSize: 20,
+				},
+			}),
+			title: this.props.title ? this.props.title : "Title",
+		};
+	}
+	render() {
+		return (
+			<View
+				style={{
+					backgroundColor: "#0f0f0f",
+					width: "100%",
+					padding: 20,
+					borderRadius: 20,
+				}}>
+				<Text
+					style={{
+						color: "#FFFFFF",
+						fontSize: 40,
+						fontWeight: "bold",
+						marginBottom: 20,
+					}}>
+					{this.state.title}
+				</Text>
+				<TextInput
+					style={styles.textInput}
+					onChangeText={this.props.onChangeText}
+					value={this.props.value}
+				/>
+			</View>
+		);
+	}
+}
+
 const styles = StyleSheet.create({
 	button: {
 		backgroundColor: "red",
@@ -71,6 +122,13 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 		fontWeight: "bold",
 	},
+
+	textInput: {
+		backgroundColor: "rgba(0,0,0,0.5)",
+		color: "#FFF",
+		height: 60,
+		fontSize: 30,
+	},
 });
 
-export default SettingButton;
+export { GenericButton, GenericTextInput };
