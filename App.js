@@ -20,7 +20,7 @@ import {Camera} from 'react-native-vision-camera';
 
 const Stack = createNativeStackNavigator();
 
-const tempActions = [
+var tempActions = [
   {
     name: 'Copy',
   },
@@ -32,6 +32,8 @@ const tempActions = [
   },
 ];
 
+var setActions;
+
 const port = 6321;
 
 // Pulls actions from ip:port/getActions
@@ -40,8 +42,12 @@ function getActions(ip) {
   fetch(`http://${ip}:${port}/getActions`)
     .then(response => response.json())
     .then(data => {
-      console.log(data);
+      setActions(data);
+
       return data;
+    })
+    .catch(error => {
+      console.log(error);
     });
 }
 
@@ -73,7 +79,6 @@ export default function App() {
               },
             }}
           />
-          <Stack.Screen name="ScanQR" component={scanQRScreen} />
         </Stack.Navigator>
       </NavigationContainer>
       <TouchableOpacity
@@ -95,11 +100,12 @@ export default function App() {
 }
 
 const HomeScreen = ({navigation, route}) => {
-  const {ip} = route.params;
+  var actions;
+  [actions, setActions] = useState(tempActions);
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <ActionsContainer actions={tempActions} />
+      <ActionsContainer actions={actions} />
       <SettingsButton navigation={navigation} />
     </View>
   );

@@ -59,6 +59,10 @@ class Action extends React.Component {
       </TouchableOpacity>
     );
   }
+
+  runAction() {
+    // // Runs action at ip:port/getActions
+  }
 }
 
 function pickRandomColor() {

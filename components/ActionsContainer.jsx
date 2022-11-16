@@ -29,13 +29,14 @@ class ActionsContainer extends React.Component {
           width: '100%',
           height: '100%',
         }}>
-        {this.state.actions.map((action, index) => {
+        {this.props.actions.map((action, index) => {
           return (
             <Action
               key={index}
               title={action.name}
               onPress={action.onPress}
               backgroundColor={action.backgroundColor}
+              uid={action.uid}
             />
           );
         })}
