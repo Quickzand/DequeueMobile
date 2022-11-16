@@ -1,0 +1,24 @@
+{
+  "name": "DequeueMobile",
+  "displayName": "DequeueMobile",
+  "plugins": [
+    [
+      "react-native-vision-camera",
+      {
+        "cameraPermissionText": "$(PRODUCT_NAME) needs access to your Camera."
+      }
+    ]
+  ],
+  "android": {
+    "permissions": [
+      "android.permission.CAMERA"
+    ],
+    "package": "info.matthewsand"
+  },
+  "ios": {
+    "infoPlist": {
+      "NSCameraUsageDescription": "$(PRODUCT_NAME) needs access to your Camera."
+    },
+    "bundleIdentifier": "info.matthewsand"
+  }
+}
